@@ -11,10 +11,11 @@ function evaluate(a, b, c)
     var su = sum(arguments, arguments.length-1);
     var ma = max(0, arguments, arguments.length-1);
     var mi = min(9999999, arguments, arguments.length-1);
+    var av = avg(arguments, 0, arguments.length);
     console.log('sum ', su);
     console.log('max ', ma);
     console.log('min ', mi);
-    // console.log('ave ', );
+    console.log('ave ', av);
 
 }
 
@@ -91,26 +92,19 @@ function min(minArgument, arguments, index)
     }
 }
 
-function avg(arg, index)
+function avg(arg, index, qty)
 {
-    if(index <= 0)
-    {
-        if(index < 0)
-        {
-            return "Dont exist arguments";
-        }
-        else
-            return arg[index];
+
+
+    if (index == qty - 1) {
+        return arg[index];
     }
+
+    if (index == 0)
+        return ((arg[index] + avg(arg, index + 1, qty)) / qty);
     else
-    {
-        return arg[index] + sum(arg, index-1);
-    }
+        return (arg[index] + avg(arg, index + 1, qty));
 }
-
-
-
-
 
 
 
